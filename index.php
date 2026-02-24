@@ -172,9 +172,7 @@ $e = fn(string $s): string => htmlspecialchars($s, ENT_QUOTES | ENT_SUBSTITUTE, 
       <div class="team-grid">
         <?php foreach ($config['team'] as $i => $member): ?>
         <article class="card team-card reveal" style="--delay: <?= $i * 120 ?>ms">
-          <div class="team-avatar" aria-hidden="true">
-            <?= strtoupper(substr($member['name'], 0, 1)) ?>
-          </div>
+          <img class="team-avatar" aria-hidden="true" src="<?= $e($member['img_url']) ?>">
           <h3 class="team-name"><?= $e($member['name']) ?></h3>
           <p class="team-role"><?= $e($member['role']) ?></p>
           <a

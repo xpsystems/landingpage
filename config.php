@@ -6,6 +6,7 @@ $config = [
         'tagline'     => 'German Web-Provider',
         'description' => 'European infrastructure, digital sovereignty, and developer-first tooling — built and operated from Germany.',
         'domains'     => ['xpsystems.eu', 'xpsystems.de'],
+        'version'     => '3.2.1',
     ],
     'nav' => [
         ['label' => 'Services', 'href' => '#services', 'external' => false],
@@ -78,11 +79,13 @@ $config = [
             'name' => 'Fabian Ternis',
             'role' => 'Founder / Web Dev',
             'url'  => 'https://fabianternis.dev',
+            'img_url' => 'https://github.com/michaelninder.png',
         ],
         [
             'name' => 'Ramsay Brewer',
             'role' => 'Developer',
             'url'  => 'https://dogwaterdev.de',
+            'img_url' => 'https://github.com/dogwaterdev.png',
         ],
     ],
     'stats' => [
