@@ -6,7 +6,7 @@ $config = [
         'tagline'     => 'German Web-Provider',
         'description' => 'European infrastructure, digital sovereignty, and developer-first tooling — built and operated from Germany.',
         'domains'     => ['xpsystems.eu', 'xpsystems.de'],
-        'version'     => '3.2.1',
+        'version'     => '3.2.2',
     ],
     'nav' => [
         ['label' => 'Services', 'href' => '#services', 'external' => false],

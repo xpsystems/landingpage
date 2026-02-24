@@ -131,9 +131,50 @@ function e(string $s): string {
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- ① Theme bootstrap — runs sync before first paint to prevent flash -->
+  <script>
+  (function(){
+    try {
+      var s = localStorage.getItem('xps-theme') || 'system';
+      var r = s === 'system'
+        ? (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
+        : s;
+      document.documentElement.setAttribute('data-theme', r);
+    } catch(e) {}
+  })();
+  </script>
+
+  <!-- ② Preload bar — inline so it paints before external CSS arrives -->
+  <style>
+  #preload-bar {
+    position: fixed;
+    top: 0; left: 0;
+    width: 0%;
+    height: 3px;
+    z-index: 9999;
+    pointer-events: none;
+    background: linear-gradient(90deg, #4f8ef7 0%, #7ab5fa 60%, #a8d0ff 100%);
+    box-shadow: 0 0 10px rgba(79,142,247,.7), 0 0 20px rgba(79,142,247,.3);
+    border-radius: 0 2px 2px 0;
+    /* progress driven by JS; transition set per-phase */
+    will-change: width, opacity;
+  }
+  [data-theme="light"] #preload-bar {
+    background: linear-gradient(90deg, #2e6ee6 0%, #5590f5 60%, #84b4ff 100%);
+    box-shadow: 0 0 10px rgba(46,110,230,.6), 0 0 20px rgba(46,110,230,.25);
+  }
+  #preload-bar.done {
+    transition: width .25s cubic-bezier(.23,.49,.55,.98),
+                opacity .4s ease .1s;
+  }
+  </style>
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<div id="preload-bar"></div>
 
 <!-- NAV -->
 <header class="nav-header" id="nav-header">
@@ -207,7 +248,7 @@ function e(string $s): string {
 
   <div class="section-divider">
     <svg viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,0 C360,70 1080,70 1440,0 L1440,70 L0,70 Z" fill="var(--bg-alt)"/>
+      <path d="M0,0 C360,70 1080,70 1440,0 L1440,70 L0,70 Z" class="divider-fill-alt"/>
     </svg>
   </div>
 </section>
@@ -263,7 +304,7 @@ function e(string $s): string {
 
   <div class="section-divider divider-below">
     <svg viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,70 C360,0 1080,0 1440,70 L1440,70 L0,70 Z" fill="var(--bg)"/>
+      <path d="M0,70 C360,0 1080,0 1440,70 L1440,70 L0,70 Z" class="divider-fill-bg"/>
     </svg>
   </div>
 </section>
@@ -310,7 +351,7 @@ function e(string $s): string {
 
   <div class="section-divider divider-below">
     <svg viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,0 C360,70 1080,70 1440,0 L1440,70 L0,70 Z" fill="var(--bg-alt)"/>
+      <path d="M0,0 C360,70 1080,70 1440,0 L1440,70 L0,70 Z" class="divider-fill-alt"/>
     </svg>
   </div>
 </section>
