@@ -115,6 +115,6 @@ $config = [
         ['label' => 'eu-data.org', 'href' => 'https://eu-data.org'],
         ['label' => 'MTEX.dev',    'href' => 'https://mtex.dev'],
     ],
-    'status_check_url' => 'https://status.mtex.dev',
+    'status_check_url' => 'https://status.xpsystems.eu/api/status',
     'copyright_year'   => (int) date('Y'),
 ];

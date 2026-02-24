@@ -19,7 +19,9 @@
   --partner:      #e8a03c;
   --partner-dim:  #7a520f;
   --green:        #22c55e;
+  --yellow:       #f59e0b;
   --red:          #ef4444;
+  --grey:         #52525b;
   --nav-height:   64px;
   --radius:       12px;
   --radius-sm:    8px;
@@ -55,6 +57,8 @@ ul {
   margin: 0 auto;
   padding: 0 20px;
 }
+
+/* ── Nav ──────────────────────────────────────────────────────── */
 
 .nav-header {
   position: fixed;
@@ -112,6 +116,8 @@ ul {
   background-color: var(--card);
 }
 
+/* ── Status badge ─────────────────────────────────────────────── */
+
 .status-badge {
   display: inline-flex;
   align-items: center;
@@ -126,29 +132,50 @@ ul {
   margin-left: 4px;
   cursor: default;
   user-select: none;
+  transition: border-color var(--transition);
 }
+
+/* Badge colour variants — applied via JS */
+.status-badge.badge-green  { border-color: rgba(34, 197, 94, 0.35); }
+.status-badge.badge-yellow { border-color: rgba(245, 158, 11, 0.35); }
+.status-badge.badge-red    { border-color: rgba(239, 68, 68, 0.35); }
+.status-badge.badge-grey   { border-color: var(--border); }
 
 .status-dot {
   width: 7px;
   height: 7px;
   border-radius: 50%;
   background-color: var(--text-dim);
-  transition: background-color 0.4s ease;
+  flex-shrink: 0;
+  transition: background-color 0.4s ease, box-shadow 0.4s ease;
 }
 
+/* Dot colour states */
 .status-dot.green {
   background-color: var(--green);
   box-shadow: 0 0 6px var(--green);
 }
 
+.status-dot.yellow {
+  background-color: var(--yellow);
+  box-shadow: 0 0 6px var(--yellow);
+}
+
 .status-dot.red {
   background-color: var(--red);
+  box-shadow: 0 0 6px rgba(239, 68, 68, 0.6);
+}
+
+.status-dot.grey {
+  background-color: var(--grey);
 }
 
 .status-text {
   color: var(--text-muted);
   font-size: 0.75rem;
 }
+
+/* ── Hamburger ────────────────────────────────────────────────── */
 
 .nav-hamburger {
   display: flex;
@@ -174,17 +201,10 @@ ul {
   height: 18px;
 }
 
-.icon-close {
-  display: none;
-}
+.icon-close { display: none; }
 
-.nav-hamburger.open .icon-hamburger {
-  display: none;
-}
-
-.nav-hamburger.open .icon-close {
-  display: block;
-}
+.nav-hamburger.open .icon-hamburger { display: none; }
+.nav-hamburger.open .icon-close     { display: block; }
 
 .nav-overlay {
   display: none;
@@ -194,9 +214,9 @@ ul {
   z-index: 98;
 }
 
-.nav-overlay.active {
-  display: block;
-}
+.nav-overlay.active { display: block; }
+
+/* ── Hero ─────────────────────────────────────────────────────── */
 
 .hero {
   position: relative;
@@ -221,7 +241,6 @@ ul {
 }
 
 .hero-title {
-  position: relative;
   font-size: clamp(3rem, 9vw, 6.5rem);
   font-weight: 800;
   color: var(--text);
@@ -229,22 +248,6 @@ ul {
   line-height: 1.05;
   margin-bottom: 4px;
   display: inline-block;
-}
-
-.heading-accent-wrap {
-  display: block;
-  position: relative;
-  height: 0;
-  overflow: visible;
-}
-
-.heading-accent-svg {
-  position: absolute;
-  top: 4px;
-  left: 0;
-  width: 100%;
-  height: 10px;
-  opacity: 0.8;
 }
 
 .hero-tagline {
@@ -270,6 +273,8 @@ ul {
   gap: 12px;
 }
 
+/* ── Buttons ──────────────────────────────────────────────────── */
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -279,16 +284,11 @@ ul {
   font-size: 0.9375rem;
   font-weight: 600;
   cursor: pointer;
-  transition: transform var(--transition), opacity var(--transition), background-color var(--transition), border-color var(--transition);
+  transition: transform var(--transition), background-color var(--transition), border-color var(--transition);
 }
 
-.btn:hover {
-  transform: translateY(-2px);
-}
-
-.btn:active {
-  transform: translateY(0);
-}
+.btn:hover  { transform: translateY(-2px); }
+.btn:active { transform: translateY(0); }
 
 .btn-primary {
   background-color: var(--accent);
@@ -318,6 +318,8 @@ ul {
   flex-shrink: 0;
 }
 
+/* ── Section dividers ─────────────────────────────────────────── */
+
 .section-divider {
   display: block;
   line-height: 0;
@@ -331,9 +333,9 @@ ul {
   height: 70px;
 }
 
-.divider-below {
-  margin-top: -1px;
-}
+.divider-below { margin-top: -1px; }
+
+/* ── Sections ─────────────────────────────────────────────────── */
 
 .services-section {
   background-color: var(--bg-alt);
@@ -358,8 +360,6 @@ ul {
 }
 
 .section-title {
-  position: relative;
-  display: inline-block;
   font-size: clamp(1.75rem, 4vw, 2.5rem);
   font-weight: 700;
   color: var(--text);
@@ -375,6 +375,8 @@ ul {
   margin-left: auto;
   margin-right: auto;
 }
+
+/* ── Service cards ────────────────────────────────────────────── */
 
 .services-grid {
   display: grid;
@@ -400,13 +402,8 @@ ul {
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
 }
 
-.card-partner {
-  border-color: var(--partner-dim);
-}
-
-.card-partner:hover {
-  border-color: var(--partner);
-}
+.card-partner { border-color: var(--partner-dim); }
+.card-partner:hover { border-color: var(--partner); }
 
 .card-badge {
   display: inline-block;
@@ -428,9 +425,7 @@ ul {
   border-color: var(--accent-dim);
 }
 
-.card-top {
-  margin-bottom: 20px;
-}
+.card-top { margin-bottom: 20px; }
 
 .card-name {
   font-size: 1.125rem;
@@ -448,9 +443,7 @@ ul {
   transition: color var(--transition);
 }
 
-.card-name-link:hover {
-  color: var(--accent);
-}
+.card-name-link:hover { color: var(--accent); }
 
 .card-tagline {
   font-size: 0.9rem;
@@ -476,9 +469,7 @@ ul {
   transition: color var(--transition);
 }
 
-.card-sublink:hover {
-  color: var(--accent);
-}
+.card-sublink:hover { color: var(--accent); }
 
 .icon-ext {
   width: 13px;
@@ -494,9 +485,9 @@ ul {
   transition: transform var(--transition);
 }
 
-.card-sublink:hover .icon-arrow {
-  transform: translateX(3px);
-}
+.card-sublink:hover .icon-arrow { transform: translateX(3px); }
+
+/* ── Team cards ───────────────────────────────────────────────── */
 
 .team-grid {
   display: grid;
@@ -512,18 +503,43 @@ ul {
   padding: 40px 32px;
 }
 
-.team-avatar {
-  width: 64px;
-  height: 64px;
+/* Avatar wrapper — positions img and fallback in the same spot */
+.team-avatar-wrap {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+}
+
+/* Real photo */
+.team-avatar-img {
+  display: block;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--border-hover);
+  background-color: var(--card-hover);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.team-card:hover .team-avatar-img {
+  border-color: var(--accent-dim);
+  box-shadow: 0 0 0 3px rgba(79, 142, 247, 0.18);
+}
+
+/* Letter fallback — hidden by default, shown via JS onerror */
+.team-avatar-fallback {
+  display: none;
+  position: absolute;
+  inset: 0;
   border-radius: 50%;
   background-color: var(--accent-dim);
   color: var(--accent);
   font-size: 1.5rem;
   font-weight: 800;
-  display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 20px;
   border: 2px solid var(--accent-dim);
 }
 
@@ -559,6 +575,8 @@ ul {
   border-color: var(--accent);
 }
 
+/* ── Stats ────────────────────────────────────────────────────── */
+
 .stats-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -581,9 +599,7 @@ ul {
   cursor: pointer;
 }
 
-.stat-item:hover {
-  background-color: var(--card-hover);
-}
+.stat-item:hover { background-color: var(--card-hover); }
 
 .stat-value {
   font-size: clamp(2rem, 5vw, 3rem);
@@ -609,9 +625,7 @@ ul {
   transition: color var(--transition);
 }
 
-.stat-item:hover .stat-cta {
-  color: var(--accent);
-}
+.stat-item:hover .stat-cta { color: var(--accent); }
 
 .icon-arrow-sm {
   width: 13px;
@@ -620,9 +634,9 @@ ul {
   transition: transform var(--transition);
 }
 
-.stat-item:hover .icon-arrow-sm {
-  transform: translateX(3px);
-}
+.stat-item:hover .icon-arrow-sm { transform: translateX(3px); }
+
+/* ── Footer ───────────────────────────────────────────────────── */
 
 .site-footer {
   background-color: #070709;
@@ -677,6 +691,8 @@ ul {
   background-color: var(--card);
 }
 
+/* ── Scroll-reveal ────────────────────────────────────────────── */
+
 .reveal {
   opacity: 0;
   transform: translateY(28px);
@@ -689,48 +705,25 @@ ul {
   transform: translateY(0);
 }
 
+/* ── Responsive ───────────────────────────────────────────────── */
+
 @media (min-width: 640px) {
-  .services-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  .services-grid   { grid-template-columns: repeat(2, 1fr); }
+  .team-grid       { grid-template-columns: repeat(2, 1fr); }
+  .stats-grid      { grid-template-columns: repeat(3, 1fr); }
 
-  .team-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .stats-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .footer-inner {
-    flex-direction: row;
-    justify-content: space-between;
-    text-align: left;
-  }
-
-  .footer-brand {
-    align-items: flex-start;
-  }
+  .footer-inner    { flex-direction: row; justify-content: space-between; text-align: left; }
+  .footer-brand    { align-items: flex-start; }
 }
 
 @media (min-width: 768px) {
-  .nav-hamburger {
-    display: none;
-  }
-
-  .nav-links {
-    display: flex;
-  }
+  .nav-hamburger { display: none; }
+  .nav-links     { display: flex; }
 }
 
 @media (min-width: 900px) {
-  .services-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .container {
-    padding: 0 40px;
-  }
+  .services-grid { grid-template-columns: repeat(3, 1fr); }
+  .container     { padding: 0 40px; }
 }
 
 @media (max-width: 767px) {
@@ -753,9 +746,7 @@ ul {
     overflow-y: auto;
   }
 
-  .nav-links.open {
-    transform: translateX(0);
-  }
+  .nav-links.open { transform: translateX(0); }
 
   .nav-link {
     width: 100%;
