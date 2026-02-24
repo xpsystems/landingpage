@@ -4,6 +4,7 @@
   padding: 0;
 }
 
+/* ── Design tokens: dark (default) ───────────────────────────── */
 :root {
   --bg:           #0a0a0f;
   --bg-alt:       #0d0d14;
@@ -22,10 +23,29 @@
   --yellow:       #f59e0b;
   --red:          #ef4444;
   --grey:         #52525b;
+  --footer-bg:    #070709;
   --nav-height:   64px;
   --radius:       12px;
   --radius-sm:    8px;
   --transition:   0.22s ease;
+}
+
+/* ── Design tokens: light ─────────────────────────────────────── */
+[data-theme="light"] {
+  --bg:           #f5f5f8;
+  --bg-alt:       #ebebf0;
+  --card:         #ffffff;
+  --card-hover:   #f9f9fc;
+  --border:       #dcdce8;
+  --border-hover: #b8b8d0;
+  --text:         #111118;
+  --text-muted:   #55556a;
+  --text-dim:     #9999b8;
+  --accent:       #2e6ee6;
+  --accent-dim:   #b8d0f8;
+  --partner:      #b96a00;
+  --partner-dim:  #f5d8a8;
+  --footer-bg:    #e2e2ea;
 }
 
 html {
@@ -40,6 +60,7 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 a {
@@ -71,7 +92,11 @@ ul {
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
-  transition: border-color var(--transition);
+  transition: border-color var(--transition), background-color 0.3s ease;
+}
+
+[data-theme="light"] .nav-header {
+  background-color: rgba(245, 245, 248, 0.88);
 }
 
 .nav-inner {
@@ -132,13 +157,12 @@ ul {
   margin-left: 4px;
   cursor: default;
   user-select: none;
-  transition: border-color var(--transition);
+  transition: border-color var(--transition), background-color 0.3s ease;
 }
 
-/* Badge colour variants — applied via JS */
-.status-badge.badge-green  { border-color: rgba(34, 197, 94, 0.35); }
-.status-badge.badge-yellow { border-color: rgba(245, 158, 11, 0.35); }
-.status-badge.badge-red    { border-color: rgba(239, 68, 68, 0.35); }
+.status-badge.badge-green  { border-color: rgba(34, 197, 94, 0.4); }
+.status-badge.badge-yellow { border-color: rgba(245, 158, 11, 0.4); }
+.status-badge.badge-red    { border-color: rgba(239, 68, 68, 0.4); }
 .status-badge.badge-grey   { border-color: var(--border); }
 
 .status-dot {
@@ -150,25 +174,10 @@ ul {
   transition: background-color 0.4s ease, box-shadow 0.4s ease;
 }
 
-/* Dot colour states */
-.status-dot.green {
-  background-color: var(--green);
-  box-shadow: 0 0 6px var(--green);
-}
-
-.status-dot.yellow {
-  background-color: var(--yellow);
-  box-shadow: 0 0 6px var(--yellow);
-}
-
-.status-dot.red {
-  background-color: var(--red);
-  box-shadow: 0 0 6px rgba(239, 68, 68, 0.6);
-}
-
-.status-dot.grey {
-  background-color: var(--grey);
-}
+.status-dot.green  { background-color: var(--green);  box-shadow: 0 0 6px var(--green); }
+.status-dot.yellow { background-color: var(--yellow); box-shadow: 0 0 6px rgba(245,158,11,0.6); }
+.status-dot.red    { background-color: var(--red);    box-shadow: 0 0 6px rgba(239,68,68,0.6); }
+.status-dot.grey   { background-color: var(--grey); }
 
 .status-text {
   color: var(--text-muted);
@@ -202,7 +211,6 @@ ul {
 }
 
 .icon-close { display: none; }
-
 .nav-hamburger.open .icon-hamburger { display: none; }
 .nav-hamburger.open .icon-close     { display: block; }
 
@@ -223,6 +231,7 @@ ul {
   background-color: var(--bg);
   padding: calc(var(--nav-height) + 80px) 0 0;
   overflow: hidden;
+  transition: background-color 0.3s ease;
 }
 
 .hero-inner {
@@ -301,6 +310,11 @@ ul {
   border-color: #6b9ff8;
 }
 
+[data-theme="light"] .btn-primary:hover {
+  background-color: #1a5ed4;
+  border-color: #1a5ed4;
+}
+
 .btn-secondary {
   background-color: var(--card);
   color: var(--text);
@@ -341,17 +355,20 @@ ul {
   background-color: var(--bg-alt);
   padding: 80px 0 0;
   position: relative;
+  transition: background-color 0.3s ease;
 }
 
 .team-section {
   background-color: var(--bg);
   padding: 80px 0 0;
   position: relative;
+  transition: background-color 0.3s ease;
 }
 
 .stats-section {
   background-color: var(--bg-alt);
   padding: 80px 0 80px;
+  transition: background-color 0.3s ease;
 }
 
 .section-header {
@@ -376,7 +393,7 @@ ul {
   margin-right: auto;
 }
 
-/* ── Service cards ────────────────────────────────────────────── */
+/* ── Cards ────────────────────────────────────────────────────── */
 
 .services-grid {
   display: grid;
@@ -399,7 +416,11 @@ ul {
   transform: translateY(-4px);
   border-color: var(--border-hover);
   background-color: var(--card-hover);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] .card:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
 }
 
 .card-partner { border-color: var(--partner-dim); }
@@ -417,6 +438,10 @@ ul {
   border-radius: 999px;
   padding: 2px 9px;
   margin-bottom: 16px;
+}
+
+[data-theme="light"] .card-badge {
+  background-color: rgba(185, 106, 0, 0.08);
 }
 
 .card-badge-service {
@@ -503,7 +528,6 @@ ul {
   padding: 40px 32px;
 }
 
-/* Avatar wrapper — positions img and fallback in the same spot */
 .team-avatar-wrap {
   position: relative;
   width: 80px;
@@ -511,7 +535,6 @@ ul {
   margin: 0 auto 20px;
 }
 
-/* Real photo */
 .team-avatar-img {
   display: block;
   width: 80px;
@@ -528,7 +551,6 @@ ul {
   box-shadow: 0 0 0 3px rgba(79, 142, 247, 0.18);
 }
 
-/* Letter fallback — hidden by default, shown via JS onerror */
 .team-avatar-fallback {
   display: none;
   position: absolute;
@@ -639,9 +661,10 @@ ul {
 /* ── Footer ───────────────────────────────────────────────────── */
 
 .site-footer {
-  background-color: #070709;
+  background-color: var(--footer-bg);
   border-top: 1px solid var(--border);
   padding: 40px 0;
+  transition: background-color 0.3s ease;
 }
 
 .footer-inner {
@@ -655,7 +678,7 @@ ul {
 .footer-brand {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
   align-items: center;
 }
 
@@ -669,6 +692,26 @@ ul {
 .footer-copy {
   font-size: 0.8125rem;
   color: var(--text-dim);
+}
+
+.footer-version {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  font-family: 'SF Mono', 'Fira Code', 'Fira Mono', monospace;
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 1px 8px;
+  margin-top: 2px;
+  display: inline-block;
+  letter-spacing: 0.02em;
+}
+
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
 }
 
 .footer-nav {
@@ -691,6 +734,52 @@ ul {
   background-color: var(--card);
 }
 
+/* ── Theme toggle ─────────────────────────────────────────────── */
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 3px;
+}
+
+.theme-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-dim);
+  transition: color var(--transition), background-color var(--transition);
+}
+
+.theme-btn svg {
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+}
+
+.theme-btn:hover {
+  color: var(--text);
+  background-color: var(--border);
+}
+
+.theme-btn.active {
+  color: var(--accent);
+  background-color: rgba(79, 142, 247, 0.12);
+}
+
+[data-theme="light"] .theme-btn.active {
+  background-color: rgba(46, 110, 230, 0.10);
+}
+
 /* ── Scroll-reveal ────────────────────────────────────────────── */
 
 .reveal {
@@ -708,12 +797,19 @@ ul {
 /* ── Responsive ───────────────────────────────────────────────── */
 
 @media (min-width: 640px) {
-  .services-grid   { grid-template-columns: repeat(2, 1fr); }
-  .team-grid       { grid-template-columns: repeat(2, 1fr); }
-  .stats-grid      { grid-template-columns: repeat(3, 1fr); }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .team-grid     { grid-template-columns: repeat(2, 1fr); }
+  .stats-grid    { grid-template-columns: repeat(3, 1fr); }
 
-  .footer-inner    { flex-direction: row; justify-content: space-between; text-align: left; }
-  .footer-brand    { align-items: flex-start; }
+  .footer-inner {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+    align-items: flex-end;
+  }
+
+  .footer-brand  { align-items: flex-start; }
+  .footer-right  { align-items: flex-end; }
 }
 
 @media (min-width: 768px) {
@@ -744,6 +840,10 @@ ul {
     transform: translateX(100%);
     transition: transform 0.28s ease;
     overflow-y: auto;
+  }
+
+  [data-theme="light"] .nav-links {
+    background-color: #f0f0f5;
   }
 
   .nav-links.open { transform: translateX(0); }
