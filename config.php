@@ -6,7 +6,7 @@ return [
         'tagline'     => 'German Web-Provider',
         'description' => 'European infrastructure, digital sovereignty, and developer-first tooling — built and operated from Germany.',
         'domains'     => ['xpsystems.eu', 'xpsystems.de'],
-        'version'     => '3.3.0',
+        'version'     => '3.3.1',
     ],
     'nav' => [
         ['label' => 'Services', 'href' => '#services', 'external' => false],
@@ -110,7 +110,7 @@ return [
         ],
     ],
     'footer_links' => [
-        ['label' => 'GitHub',      'href' => 'https://github.com/xpsystems'],
+        ['label' => 'GitHub',      'href' => 'https://github.com/xpsystems/landingpage'],
         ['label' => 'Status',      'href' => 'https://status.xpsystems.eu'],
         ['label' => 'EuropeHost',  'href' => 'https://europehost.eu'],
         ['label' => 'eu-data.org', 'href' => 'https://eu-data.org'],
