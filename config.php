@@ -95,7 +95,7 @@ return [
         [
             'value'      => '100+',
             'label'      => 'Domains Managed',
-            'url'        => 'https://domainlist.fabianternis.de',
+            'url'        => 'https://domains.xpsystems.eu',
             'link_label' => 'View domain list',
         ],
         [
