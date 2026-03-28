@@ -76,7 +76,7 @@
 /* ── Services section ────────────────────────────────────────── */
 .services-section {
     background-color: var(--bg-alt);
-    padding: 80px 0 0;
+    padding: 80px 0 80px;
     position: relative;
     transition: background-color 0.3s ease;
 }
@@ -116,7 +116,7 @@
 /* ── Team section ────────────────────────────────────────────── */
 .team-section {
     background-color: var(--bg);
-    padding: 80px 0 0;
+    padding: 80px 0 80px;
     position: relative;
     transition: background-color 0.3s ease;
 }
